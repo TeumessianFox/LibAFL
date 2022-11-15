@@ -272,7 +272,7 @@ pub fn build() {
                 .arg("--disable-mpath")
                 .arg("--disable-multiprocess")
                 .arg("--disable-netmap")
-                .arg("--disable-nettle")
+                .arg("--enable-nettle")
                 .arg("--disable-numa")
                 .arg("--disable-nvmm")
                 .arg("--disable-opengl")
@@ -460,6 +460,9 @@ pub fn build() {
 
     if emulation_mode == "systemmode" {
         println!("cargo:rustc-link-lib=pixman-1");
+        println!("cargo:rustc-link-lib=gmp");
+        println!("cargo:rustc-link-lib=hogweed");
+        println!("cargo:rustc-link-lib=nettle");
 
         fs::create_dir_all(target_dir.join("pc-bios")).unwrap();
         for path in fs::read_dir(build_dir.join("pc-bios")).unwrap() {
