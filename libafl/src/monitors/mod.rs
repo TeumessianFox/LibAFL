@@ -16,6 +16,7 @@ pub use prometheus::PrometheusMonitor;
 #[cfg(feature = "std")]
 pub mod disk;
 use alloc::{fmt::Debug, string::String, vec::Vec};
+use core::fmt::Write;
 use core::{fmt, time::Duration};
 
 #[cfg(feature = "std")]
@@ -398,6 +399,12 @@ where
             self.total_execs(),
             self.execs_per_sec()
         );
+        //
+        let client = self.client_stats_mut_for(sender_id);
+        for (key, val) in &client.user_monitor {
+            write!(fmt, ", {key}: {val}").unwrap();
+        }
+        //
         (self.print_fn)(fmt);
 
         // Only print perf monitor if the feature is enabled
