@@ -44,8 +44,6 @@ pub fn build() {
     println!("cargo:rustc-cfg=emulation_mode=\"{emulation_mode}\"");
 
     println!("cargo:rerun-if-changed=build.rs");
-    println!("cargo:rerun-if-changed=src/asan-giovese.c");
-    println!("cargo:rerun-if-changed=src/asan-giovese.h");
     println!("cargo:rerun-if-env-changed=CROSS_CC");
 
     // Make sure we have at most one architecutre feature set
