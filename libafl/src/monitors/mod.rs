@@ -388,7 +388,7 @@ where
     }
 
     fn display(&mut self, event_msg: String, sender_id: u32) {
-        let fmt = format!(
+        let mut fmt = format!(
             "[{} #{}] run time: {}, clients: {}, corpus: {}, objectives: {}, executions: {}, exec/sec: {}",
             event_msg,
             sender_id,
